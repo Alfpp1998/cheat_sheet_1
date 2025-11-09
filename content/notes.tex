@@ -4,12 +4,11 @@
 Let  $X_1,…,X_nn$  be i.i.d. $Exp(\lambda)$ random variables.
 
 Distribution of $min_i(Xi)$ 
-
 \begin{align*}
-   \mathbf{P}(\min _ i (X_ i)\leq t) &=\\
-&=1-\mathbf{P}(\min _ i (X_ i)\geq t)\\
-&=1-(\mathbf{P}(X_1\geq t))(\mathbf{P}(X_2\geq t))\ldots (\mathbf{P}(X_ n\geq t))\\
-&=1-(1-F_ X(t))^ n \, =\, 1-e^{-n\lambda x}
+\mathbf{P}(\min _ i (X_ i)\leq t) &=\\
+1-\mathbf{P}(\min _ i (X_ i)\geq t) &=\\
+1-(\mathbf{P}(X_1\geq t))(\mathbf{P}(X_2\geq t))\ldots (\mathbf{P}(X_ n\geq t)) &=\\
+1-(1-F_ X(t))^ n \, =\, 1-e^{-n\lambda x}
 \end{align*}
 
 Differentiate w.r.t $x$ to get the pdf of $min_i(Xi)$:

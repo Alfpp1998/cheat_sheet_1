@@ -12,11 +12,9 @@ h(Y|X=x) = \frac{f(x, Y)}{g(x)}
 where $f$ is the joint PDF, $g$ the marginal density of $X$ and $h$ the conditional density. What we are interested in is $h(Y|X)$.
 
 \textbf{Regression function:} For a partial description, we can consider instead the conditional expection of $Y$ given $X=x$:
-
 \begin{align*}
 x \mapsto f(x) = \mathbb{E}[Y | X=x] = \int yh(y|x)dy
 \end{align*}
-
 We can also consider different descriptions of the distribution, like the median, quantiles or the variance.\\
 \textbf{Linear regression:} trying to fit any function to $\mathbb{E}[Y | X=x]$ is a nonparametric problem; therefore, we restrict the problem to the tractable one of linear function:
 \begin{align*}
@@ -30,25 +28,21 @@ f: x \mapsto a + bx
 \end{align*}
 
 Which gives:
-
 \begin{align*}
 b^{*} = \frac{Cov(X, Y)}{\mathbb{V}[X]}, \quad a^{*} = \mathbb{E}[Y] - b^{*} \mathbb{E}[X]
 \end{align*}
 
 \textbf{Noise:} we model the noise of $Y$ around the regression line by a random variable $\varepsilon = Y - a^{*} - b^{*} X$, such as:
-
 \begin{align*}
 \mathbb{E}[\varepsilon] = 0, \quad Cov(X, \varepsilon) = 0
 \end{align*}
 
 We have to estimate $a^{*}$ and $b^{*}$ from the data. We have $n$ random pairs $(X_1, Y_1), \ldots, (X_n, Y_n) \sim_{iid} (X, Y)$ such as:
-
 \begin{align*}
 Y_i = a^{*} + b^{*} X_i + \varepsilon_i
 \end{align*}
 
 The \textbf{Least Squares Estimator (LSE)} of $(a^{*}, b^{*})$ is the minimizer of the squared sum:
-
 \begin{align*}
 (\hat{a}_n, \hat{b}_n) = argmin_{(a, b) \in \mathbb{R}^2}\sum_{i=1}^n(Y_i - a - bX_i)^2
 \end{align*}
@@ -59,17 +53,16 @@ The estimators are given by:
 \end{align*}
 
 The \textbf{Multivariate Regression} is given by:
-
 \begin{align*}
 Y_i = \sum_{j=1}^pX_i^{(j)}\beta_j^{*} + \varepsilon_i= \underbrace{X_i^\top}_{1 \times p}\underbrace{\beta^{*}}_{p \times 1} + \varepsilon_i
 \end{align*}
 
 We can assuming that the $X_i^{(1)}$ are 1 for the intercept.
 
-\begin{itemize}
-\item If $\beta^{*} = (a^{*}, b^{*}\top)^\top$, $\beta_1^{*} = a^{*}$ is the intercept.
-\item the $\varepsilon_i$ is the noise, satisfying $Cov(X_i, \varepsilon_i) = 0$
-\end{itemize}
+%\begin{itemize}
+* If $\beta^{*} = (a^{*}, b^{*}\top)^\top$, $\beta_1^{*} = a^{*}$ is the intercept.
+* the $\varepsilon_i$ is the noise, satisfying $Cov(X_i, \varepsilon_i) = 0$
+%\end{itemize}
 
 The \textbf{Multivariate Least Squares Estimator (LSE)} of $\beta^{*}$ is the minimizer of the sum of square errors:
 \begin{align*}

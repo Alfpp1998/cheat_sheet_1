@@ -20,8 +20,9 @@ The maximum likelihood estimator is the (unique) $\theta$ that minimizes $\wideh
 
 Since taking derivatives of products is hard but easy for sums and $exp()$ is very common in pdfs we usually take the log of the likelihood function before maximizing it.
 \begin{align*}
-\ell((X_1, X_2, \dots , X_ n, \theta)) &= ln(L_n{(X_1, X_2, \dots , X_ n, \theta)})\\
- &= \sum_{i=1}^n  ln(L_i(X_i,\theta)
+\ell((X_1, X_2, \dots , X_ n, \theta)) &=\\ 
+ln(L_n{(X_1, X_2, \dots , X_ n, \theta)})&=\\
+\sum_{i=1}^n  ln(L_i(X_i,\theta)
 \end{align*}
 
 Cookbook: set up the likelihood function, take log of likelihood function. Take the partial derivative of the loglikelihood function wrt. the parameter(s). Set the partial derivative(s) to zero and solve for the parameter.
@@ -57,28 +58,26 @@ $\mathcal{I}(\theta ) = -\mathbb E\left[\mathbf{H}\ell (\theta )\right]$\\
 Cookbook:\\
 
 Better to use 2nd derivative.\\
-
-\begin{itemize}
-  \item Find loglikelihood
-  \item Take second derivative (=Hessian if multivariate)
-  \item Massage second derivative or Hessian (isolate functions of $X_i$ to use with $- \mathbf{E}(\ell ''(\theta ))$ or $-\mathbb E\left[\mathbf{H}\ell (\theta )\right]$.
-  \item Find the expectation of the functions of $X_i$ and subsitute them back into the Hessian or the second derivative. Be extra careful to subsitute the right power back. $\mathbb{E}[X_i] \neq \mathbb{E}[X_i^2]$.
-  \item Don't forget the minus sign!
-\end{itemize}
-
+%\begin{itemize}
+Find loglikelihood\\
+* Take second derivative (=Hessian if multivariate)\\
+* Massage second derivative or Hessian isolate functions of $X_i$ to use with $- \mathbf{E}(\ell ''(\theta ))$ or $-\mathbb E\left[\mathbf{H}\ell (\theta )\right]$.\\
+* Find the expectation of the functions of $X_i$ and subsitute them back into the Hessian or the second derivative. Be extra careful to subsitute the right power back. $\mathbb{E}[X_i] \neq \mathbb{E}[X_i^2]$.\\
+* Don't forget the minus sign!
+%\end{itemize}
 \subsection{Asymptotic normality of the maximum likelihood estimator}
 
 Under certain conditions the MLE is asymptotically normal and consistent. This applies even if the MLE is not the sample average.
 
 Let the true parameter $\theta^{*} \in \Theta$. Necessary assumptions:
 
-\begin{itemize}
-\item The parameter is identifiable
-\item For all $\theta \in \Theta$, the support $\mathbb{P}_{\theta}$ does not depend on $\theta$ (e.g. like in $Unif(0,\theta)$);
-\item $\theta^{*}$ is not on the boundary of $\Theta$;
-\item Fisher information $\mathcal{I}(\theta)$  is invertible in the neighborhood of $\theta^{*}$
-\item A few more technical conditions
-\end{itemize}
+%\begin{itemize}
+* The parameter is identifiable\\
+* For all $\theta \in \Theta$, the support $\mathbb{P}_{\theta}$ does not depend on $\theta$ (e.g. like in $Unif(0,\theta)$);\\
+* $\theta^{*}$ is not on the boundary of $\Theta$;\\
+* Fisher information $\mathcal{I}(\theta)$  is invertible in the neighborhood of $\theta^{*}$\\
+* A few more technical conditions
+%\end{itemize}
 
 The asymptotic variance of the MLE is the inverse of the fisher information.
 

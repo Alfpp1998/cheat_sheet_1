@@ -1,0 +1,302 @@
+\section{Probability Extras}
+\subsection*{Probability Basics}
+
+\textbf{Properties}\\
+$P(A \cup B) = P(A) + P(B) - P(A \cap B)$\\
+$P(A \cup B) \le P(A) + P(B)$\\
+
+\textbf{Conditional}\\
+$P(A \mid B) = \dfrac{P(A \cap B)}{P(B)}$\\
+$P(A \cap B) = P(B)P(A \mid B)$\\
+
+\textcolor{red}{$\triangle$} \textbf{Total Prob Theorem} \textcolor{red}{$\triangle$}\\
+$P(B) = P(A_1 \cap B) + \dots + P(A_n \cap B)$\\
+$= \sum_i P(A_i) P(B \mid A_i)$\\
+
+\textbf{Bayes}\\
+$P(A \mid B) = \dfrac{P(A)P(B \mid A)}{P(B)}$\\
+$P(A_i|B) = \dfrac{P(B|A_i)P(A_i)}{\sum_{j=1}^{n} P(B|A_j)P(A_j)}$\\
+
+$P(X=x|Y=y) = \dfrac{P(Y=y|X=x)P(X=x)}{P(Y=y)}$\\
+$f_{X|Y}(x|y) = \dfrac{f_{Y|X}(y|x)f_X(x)}{f_Y(y)}$\\
+$f_Y(y) = \int_{-\infty}^{\infty} f_{Y|X}(y|x) f_X(x)\,dx$\\
+
+$p(\theta|D) = \dfrac{p(D|\theta)p(\theta)}{p(D)}$\\
+$p(\theta|D) = \dfrac{p(D|\theta)p(\theta)}{\int p(D|\theta')p(\theta')\,d\theta'}$
+
+
+\textbf{Independence}\\
+$P(A \mid B) = P(A)$\\
+$P(A \cap B) = P(A)P(B)$\\
+
+\subsection*{Joint Probability and Conditional Formulas}
+\textbf{Discrete case:}\\
+Joint pmf: $p_{X,Y}(x,y) = P(X = x, Y = y)$\\
+Marginals: $p_X(x) = \sum_y p_{X,Y}(x,y)$, \ $p_Y(y) = \sum_x p_{X,Y}(x,y)$\\
+Conditional: $p_{Y|X}(y|x) = \dfrac{p_{X,Y}(x,y)}{p_X(x)}$, \ $p_{X|Y}(x|y) = \dfrac{p_{X,Y}(x,y)}{p_Y(y)}$\\
+Joint from conditional: $p_{X,Y}(x,y) = p_X(x)p_{Y|X}(y|x) = p_Y(y)p_{X|Y}(x|y)$\\
+If $X$ and $Y$ are independent: $p_{X,Y}(x,y) = p_X(x)p_Y(y)$.\\
+
+\textbf{Continuous case:}\\
+Joint pdf: $f_{X,Y}(x,y)$ such that $P((X,Y)\in A) = \iint_A f_{X,Y}(x,y)\,dx\,dy$\\
+Marginals: $f_X(x) = \int_{-\infty}^{\infty} f_{X,Y}(x,y)\,dy$, \ $f_Y(y) = \int_{-\infty}^{\infty} f_{X,Y}(x,y)\,dx$\\
+Conditional: $f_{Y|X}(y|x) = \dfrac{f_{X,Y}(x,y)}{f_X(x)}$, \ $f_{X|Y}(x|y) = \dfrac{f_{X,Y}(x,y)}{f_Y(y)}$\\
+Joint from conditional: $f_{X,Y}(x,y) = f_X(x)f_{Y|X}(y|x) = f_Y(y)f_{X|Y}(x|y)$\\
+If $X$ and $Y$ are independent: $f_{X,Y}(x,y) = f_X(x)f_Y(y)$.\\
+
+\textbf{Mixed case (one discrete, one continuous):}\\
+If $X$ is discrete and $Y$ continuous: $f_{X,Y}(x,y) = f_{Y|X}(y|x)P(X=x)$\\
+Marginals: $f_Y(y) = \sum_x f_{X,Y}(x,y)$, \ $P(X=x) = \int f_{X,Y}(x,y)\,dy$\\
+Conditionals: $f_{Y|X}(y|x) = \dfrac{f_{X,Y}(x,y)}{P(X=x)}$, \ $P(X=x|Y=y) = \dfrac{f_{X,Y}(x,y)}{f_Y(y)}$\\
+Normalization: $\iint f_{X,Y}(x,y)\,dx\,dy = 1$, \ or \ $\sum_x\sum_y p_{X,Y}(x,y) = 1$.\\
+
+
+\subsection*{CONDITIONAL VARS}
+same for PDF\\
+
+$P_{X|Y}(x|y) = \dfrac{P_{X,Y}(x,y)}{P_Y(y)}$\\
+
+\textbf{Multiplication Rule}\\
+$P_{X,Y}(x,y) = P_Y(y)P_{X|Y}(x|y)$\\
+$P_{X,Y,Z}(x,y,z) = \\
+P_X(x)P_{Y|X}(y|x)P_{Z|X,Y}(z|x,y)$\\
+$P_{X,Y|Z}(x,y|z) = \dfrac{P_{X,Y,Z}(x,y,z)}{P_Z(z)}$\\
+
+\subsection*{MULTIPLE VARS}
+
+$\sum_x \sum_y P_{X,Y}(x,y) = 1$\\
+$P((X,Y) \in B) = \iint_{(x,y)\in B} f_{X,Y}(x,y) \, dxdy$\\
+
+\textbf{Marginals / Total Probability}\\
+$P_X(x) = \sum_y P_{X,Y}(x,y) = \sum_y P_Y(y)P_{X|Y}(x|y)$\\
+$f_X(x) = \int_y f_Y(y)f_{X|Y}(x|y) \, dy$\\
+\textcolor{red}{Y ranges: what values can Y take when X = x?}\\
+$f_Y(y) = \int_x f_{X,Y}(x,y) \, dx$\\
+
+\textbf{Expected Value Rule}\\
+$\mathbb{E}[g(X,Y)] = \sum_x \sum_y g(x,y)P_{X,Y}(x,y)$\\
+$\mathbb{E}[g(X,Y)] = \\
+\int_x \int_y g(x,y)f_{X,Y}(x,y)\,dy\,dx$\\
+$\mathbb{E}[g(X,Y)] = \\
+\int_y \mathbb{E}[g(X,Y)|Y=y] f_Y(y)\,dy$\\
+
+\subsection*{Discrete Expectation and Variance}
+
+$\mathbb{E}[X] = \sum_{i} x_i \, P(X = x_i)$\\
+$\mathrm{Var}(X) = \mathbb{E}\!\left[(X - \mathbb{E}[X])^2\right] =$ \\
+$\sum_{i} (x_i - \mathbb{E}[X])^2 \, P(X = x_i)$\\
+
+\textbf{CDF}\\
+$F_{X,Y}(x,y) = P(X \le x, Y \le y)$\\
+$F_{X,Y}(x,y) = \int_{-\infty}^x \int_{-\infty}^y f_{X,Y}(s,t)\, ds\,dt$\\
+
+\subsection*{INDEPENDENCE}
+$\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]$\\
+$Var(X + Y) = Var(X) + Var(Y)$\\
+$P_{X,Y|Z}(x,y|z) = P_{X|Z}(x|z)P_{Y|Z}(y|z)$\\
+$f_{X,Y}(x,y) = f_X(x)f_Y(y)$\\
+$f_{X|Y}(x|y) = f_X(x)$\\
+$Cov(X,Y) = 0$\\
+
+\subsection*{Discrete Uniform Distribution}
+
+Let $X \sim \text{Unif}\{a, a+1, \dots, b\}$, where $a,b \in \mathbb{Z}$ and $a < b$. \\
+The variable takes all integer values between $a$ and $b$ with equal probability.\\
+
+$n=b-a+1\quad\text{(number of possible outcomes)}$
+
+\paragraph{PMF:}
+\[
+p_X(x) =
+\begin{cases}
+\dfrac{1}{n}, & x \in \{a, a+1, \dots, b\},\\
+0, & \text{otherwise.}
+\end{cases}
+\]
+
+\paragraph{CDF:}
+\[
+F_X(x) =
+\begin{cases}
+0, & x < a,\\
+\dfrac{\lfloor x \rfloor - a + 1}{n}, & a \le x < b,\\
+1, & x \ge b.
+\end{cases}
+\]
+
+\paragraph{Expectation and Variance:}
+
+$\mathbb{E}[X] = \dfrac{a + b}{2}$\\
+
+$\operatorname{Var}(X) = \dfrac{(b - a + 1)^2 - 1}{12}$\\
+
+\paragraph{Moment Generating Function (MGF):}
+\[
+M_X(t) = \dfrac{e^{ta} (1 - e^{tn})}{n(1 - e^t)}, \quad \text{for } t \neq 0.
+\]
+and \( M_X(0) = 1 \).
+
+\paragraph{Probability of an interval:}
+$P(c \le X \le d) = \dfrac{d - c + 1}{b - a + 1}, \quad$\\
+$\text{for integers } a \le c \le d \le b.$\\
+
+\paragraph{Example (standard case):}
+If $X \sim \text{Unif}\{1, 2, \dots, n\}$:
+
+$p_X(x) = \dfrac{1}{n}, \quad
+F_X(x) = \dfrac{\lfloor x \rfloor}{n}, \quad$\\
+$\mathbb{E}[X] = \dfrac{n + 1}{2}, \quad
+\operatorname{Var}(X) = \dfrac{n^2 - 1}{12}.$
+
+
+\paragraph{Distribution of the Maximum of $k$ i.i.d. samples:}
+If $M = \max(X_1, \dots, X_k)$ with $X_i \sim \text{Unif}\{1, \dots, n\}$:
+$P(M \le m) = \left( \dfrac{m}{n} \right)^k,
+\qquad$\\
+$P(M = m) = \left( \dfrac{m}{n} \right)^k - \left( \dfrac{m - 1}{n} \right)^k.$
+
+\subsection*{Summary of Arrival Processes}
+
+\textbf{Discrete vs Continuous analogies:}\\
+Bernoulli $\leftrightarrow$ Poisson, \quad Geometric $\leftrightarrow$ Exponential, \quad Pascal (Neg. Binomial) $\leftrightarrow$ Erlang.\\
+
+\textbf{Bernoulli:} discrete arrivals, independent trials with success prob.~$p$. \ (e.g., \# of students passing out of 10).\\
+\textbf{Poisson:} continuous arrivals, random events with rate~$\lambda$. \ (e.g., \# of calls per hour).\\
+
+\textbf{Geometric:} discrete waiting time until first success. \ (e.g., tosses until first head).\\
+\textbf{Exponential:} continuous waiting time until first event. \ (e.g., waiting time for next call).\\
+
+\textbf{Pascal / Neg. Binomial:} discrete time until $k$-th success. \ (e.g., tosses until 3 heads).\\
+\textbf{Erlang:} continuous time until $k$-th event. \ (e.g., time until 3 arrivals).\\
+
+
+\subsection*{Moments Extra}
+
+$\text{1º moment:} \quad \mu'_1 = \mathbb{E}[X]$ \\
+$\text{2º moment:} \quad \mu'_2 = \mathbb{E}[X^2]$ \\
+$\text{3º moment:} \quad \mu'_3 = \mathbb{E}[X^3]$ \\
+$\text{4º moment:} \quad \mu'_4 = \mathbb{E}[X^4]$ \\
+
+$\mu_2 = \mathrm{Var}(X) = \mathbb{E}[(X - \mathbb{E}[X])^2]$ \\
+$\mu_3 = \mathbb{E}[(X - \mathbb{E}[X])^3]$ \\
+$\mu_4 = \mathbb{E}[(X - \mathbb{E}[X])^4]$ \\
+
+
+\noindent \textbf{Example (Gamma distribution):}
+
+$\$mathbb{E}[X] = \frac{\alpha}{\lambda}, \quad$
+$\mathbb{E}[X^2] = \frac{\alpha(\alpha+1)}{\lambda^2}$
+
+Empirical moments:
+$\hat{m}_1 = \frac{1}{n}\sum X_i, \quad$
+$\hat{m}_2 = \frac{1}{n}\sum X_i^2$
+
+Equating and solving:
+$\hat{\alpha} = \frac{\hat{m}_1^2}{\hat{m}_2 - \hat{m}_1^2}, 
+\quad$
+$\hat{\lambda} = \frac{\hat{m}_1}{\hat{m}_2 - \hat{m}_1^2}$
+
+\subsection*{Summary of Estimation Methods}
+
+\subsection*{Estimadors connections}
+Poisson Distribution\\
+With $X_i \sim \text{Poisson}(\lambda)$ and a uniform prior for $\lambda > 0$ (that is, $\pi(\lambda) \propto 1$), define 
+$S = \sum_{i=1}^n x_i$ and $\bar{x} = S / n$. Then:
+$\textbf{MoM (method of moments):}$
+$\hat{\lambda}_{MoM} = \bar{x}$.\\
+$\textbf{MLE (maximum likelihood):}$
+$\hat{\lambda}_{MLE} = \bar{x}$.\\
+$\textbf{Posterior (with uniform prior):}$\\
+$\lambda\mid x\sim\text{Gamma}(\text{shape}=S+1,\,\text{rate}=n)$.\\
+\begin{itemize}
+    \item \textbf{Bayes estimator (posterior mean):} 
+    $\hat{\lambda}_{Bayes} = (S + 1)/n = \bar{x} + 1/n$ \,\,\textit{(mean of the Gamma posterior)}.
+    \item \textbf{MAP estimator (posterior mode):} 
+    $\hat{\lambda}_{MAP} = \max\{S/n,\,0\}$.
+    In practice, $\hat{\lambda}_{MAP} = \bar{x}$ \,\textit{(mode of the Gamma posterior; if all data are 0, it is also 0)}.
+\end{itemize}
+\textbf{Quick summary:} with a uniform prior, $\text{MoM} = \text{MLE} = \text{MAP} = \bar{x}$, and the Bayes estimator (posterior mean) is $\bar{x} + 1/n$.\\
+
+
+Binomial Distribution\\
+$X_i \sim \text{Binomial}(n, p)$\\
+$\hat{p}_{MoM} = \dfrac{\bar{X}}{n}$\\
+$\hat{p}_{MLE} = \dfrac{\bar{X}}{n}$\\
+$\hat{p}_{MAP} = \dfrac{\bar{X}}{n}$ \,\,\textit{(mode of the Beta posterior)}.\\
+$\hat{p}_{Bayes} = \dfrac{S+1}{nN+2}$\\\,\,\textit{(mean of the Beta posterior)}.\\
+\textbf{Notation:} In this context, $n$ is the number of trials within each Binomial experiment, and $N$ is the number of observed experiments (sample size). Each observation $X_i$ represents the number of successes in $n$ trials. The total number of observed successes is $S = \sum_{i=1}^{N} X_i$, and the sample mean is $\bar{X} = S / N$. Therefore, the estimator of $p$ can be expressed as $\hat{p} = \bar{X}/n = S / (nN)$.\\
+For a uniform prior ($\alpha=\beta=1$): $\hat{p}_{MAP} = \hat{p}_{Bayes} = \hat{p}_{MLE} = \bar{X}/n$\\
+
+Power (Pareto-type) Distribution\\
+$f_\theta(x) = \theta x^{\theta - 1}, \quad 0 \le x \le 1, \ \theta > 0$\\
+$\hat{\theta}_{MoM} = \dfrac{\bar{X}}{1 - \bar{X}}$\\
+$\hat{\theta}_{MLE} = -\dfrac{n}{\sum_{i=1}^{n} \ln x_i}$\\
+$\hat{\theta}_{MAP} = -\dfrac{n}{\sum_{i=1}^{n} \ln x_i}$\\
+$\hat{\theta}_{Bayes} = -\dfrac{n + 1}{\sum_{i=1}^{n} \ln x_i}$\\
+For a uniform prior $\pi(\theta)\propto1$: posterior is $\text{Gamma}(n+1, -\sum \ln x_i)$,\\
+so the Bayes estimator is the posterior mean, and MAP coincides with MLE.\\
+
+Exponential Distribution\\
+$f(x|\lambda) = \lambda e^{-\lambda x}, \quad x \ge 0, \ \lambda > 0$\\
+$\hat{\lambda}_{MoM} = \dfrac{1}{\bar{X}}$\\
+$\hat{\lambda}_{MLE} = \dfrac{1}{\bar{X}}$\\
+$\hat{\lambda}_{MAP} = \dfrac{n}{\sum_{i=1}^{n} x_i} = \dfrac{1}{\bar{X}}$ \ (mode of the Gamma posterior)\\
+$\hat{\lambda}_{Bayes} = \dfrac{n + 1}{\sum_{i=1}^{n} x_i} = \dfrac{n + 1}{n} \hat{\lambda}_{MLE}$ \ (mean of the Gamma posterior)\\
+For a uniform prior $\pi(\lambda)\propto1$: posterior is $\text{Gamma}(n+1,\,\sum x_i)$,\\
+so the Bayes estimator is the posterior mean, and MAP coincides with MLE.\\
+
+Normal Distribution (variance known)\\
+$f(x|\mu) = \dfrac{1}{\sqrt{2\pi\sigma^2}} \exp\!\left[-\dfrac{(x-\mu)^2}{2\sigma^2}\right], \quad -\infty < \mu < \infty$\\
+$\hat{\mu}_{MoM} = \bar{X}$\\
+$\hat{\mu}_{MLE} = \bar{X}$\\
+$\hat{\mu}_{MAP} = \bar{X}$ \ (mode of the Normal posterior)\\
+$\hat{\mu}_{Bayes} = \bar{X}$ \ (mean of the Normal posterior)\\
+For a uniform prior $\pi(\mu)\propto1$: posterior is $\text{Normal}(\bar{X}, \sigma^2/n)$,\\
+so the Bayes estimator equals the posterior mean, and MAP coincides with MLE.\\
+
+
+Poisson Distribution (Jeffreys prior)\\
+$X_i \sim \text{Poisson}(\lambda)$, \ Jeffreys prior $\pi_J(\lambda) \propto \lambda^{-1/2}$, \ $\lambda>0$\\
+$L(\lambda) \propto \lambda^S e^{-n\lambda}$, \ where $S = \sum_{i=1}^n x_i$ and $\bar{X} = S/n$\\
+Posterior: $\lambda | x \sim \text{Gamma}(S + 1/2,\, n)$\\
+$\hat{\lambda}_{MoM} = \bar{X}$\\
+$\hat{\lambda}_{MLE} = \bar{X}$\\
+$\hat{\lambda}_{MAP} = (S - 1/2)/n = \bar{X} - 1/(2n)$ \ (mode of the Gamma posterior)\\
+$\hat{\lambda}_{Bayes} = (S + 1/2)/n = \bar{X} + 1/(2n)$ \ (mean of the Gamma posterior)\\
+The Jeffreys prior introduces a $\pm 1/2$ correction compared to the uniform prior.\\
+
+Binomial Distribution (Jeffreys prior)\\
+$X_i \sim \text{Binomial}(n, p)$, \ Jeffreys prior $\pi_J(p) \propto [p(1-p)]^{-1/2}$, \ i.e. $p \sim \text{Beta}(1/2,\,1/2)$\\
+$S = \sum_{i=1}^N X_i$, \ $\bar{X} = S / N$\\
+Posterior: $p | x \sim \text{Beta}(S + 1/2,\, nN - S + 1/2)$\\
+$\hat{p}_{MoM} = \bar{X}/n$\\
+$\hat{p}_{MLE} = \bar{X}/n$\\
+$\hat{p}_{MAP} = (S - 1/2)/(nN - 1)$ \ (mode of the Beta posterior)\\
+$\hat{p}_{Bayes} = (S + 1/2)/(nN + 1)$ \ (mean of the Beta posterior)\\
+The Jeffreys prior smooths the posterior and avoids boundary estimates at $0$ or $1$.\\
+
+Exponential Distribution (Jeffreys prior)\\
+$f(x|\lambda) = \lambda e^{-\lambda x}, \ x \ge 0, \ \lambda > 0$\\
+Jeffreys prior $\pi_J(\lambda) \propto 1/\lambda$ \ (scale-invariant)\\
+Posterior: $\lambda | x \sim \text{Gamma}(n,\, \sum X_i)$\\
+$\hat{\lambda}_{MoM} = 1/\bar{X}$\\
+$\hat{\lambda}_{MLE} = 1/\bar{X}$\\
+$\hat{\lambda}_{MAP} = (n - 1)/\sum X_i = \tfrac{n - 1}{n}\hat{\lambda}_{MLE}$ \ (mode of the Gamma posterior)\\
+$\hat{\lambda}_{Bayes} = n / \sum X_i = 1/\bar{X}$ \ (mean of the Gamma posterior, identical to MLE)\\
+The Jeffreys prior maintains scale invariance and yields nearly the same estimate as the MLE.\\
+
+\textbf{Conditional Variance:}\\
+For the discrete case: $\operatorname{Var}(Y|X=x) = \sum_y (y - \mathbb{E}[Y|X=x])^2 \, p_{Y|X}(y|x)$\\
+For the continuous case: $\operatorname{Var}(Y|X=x) = \int_{-\infty}^{\infty} (y - \mathbb{E}[Y|X=x])^2 \, f_{Y|X}(y|x)\,dy$\\
+In general: $\operatorname{Var}(Y|X)$ is a random variable that depends on $X$.\\
+\textit{Law of total variance:} $\operatorname{Var}(Y) = \mathbb{E}[\operatorname{Var}(Y|X)] + \operatorname{Var}(\mathbb{E}[Y|X])$.\\
+
+Link Function\\
+The function $g$ that links the mean $\mu$ to the canonical parameter $\theta$ is called the \textit{Canonical Link}: $g(\mu) = \theta$, so that $\mu = g^{-1}(X^\top \beta)$.\\
+Since $\mu = b'(\theta)$, the canonical link is given by $g(\mu) = (b')^{-1}(\mu)$.\\
+Normal distribution: $b(\theta) = \theta^2/2$, \ $g(\mu) = \mu$\\
+Poisson distribution: $b(\theta) = \exp(\theta)$, \ $g(\mu) = \log(\mu)$\\
+Bernoulli distribution: $b(\theta) = \log(1 + e^\theta)$, \ $g(\mu) = \log\!\left(\dfrac{\mu}{1 - \mu}\right)$\\
+Gamma distribution: $b(\theta) = -\log(-\theta)$, \ $g(\mu) = -\dfrac{1}{\mu}$\\
+
+

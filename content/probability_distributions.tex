@@ -15,11 +15,11 @@ $Var(X)=p(1-p)$\\
 Likelihood n trials:\\
 
 $L_ n(X_1, \ldots , X_ n, p) =\\
-= p^{\sum _{i = 1}^ n X_ i} (1 -p)^{{\color{blue}{n - }} \sum _{i = 1}^ n X_ i}$ \\
+p^{\sum _{i = 1}^ n X_ i} (1 -p)^{{\color{blue}{n - }} \sum _{i = 1}^ n X_ i}$ \\
 
 Loglikelihood n trials:\\
 
-$\ell_n (p) = \\ = \ln  \left( p \right) \sum _{i=1}^{n}X_{{i}}+ \left( n-\sum _{i=1}^{n}
+$\ell_n (p) = \\ \ln  \left( p \right) \sum _{i=1}^{n}X_{{i}}+ \left( n-\sum _{i=1}^{n}
 X_{{i}} \right) \ln  \left( 1-p \right) 
 $\\
 
@@ -43,113 +43,66 @@ Parameters $p$ and $n$, discrete. Describes the number of successes
 in n independent Bernoulli trials.\\
 
 $p_x(k)= {n\choose k}{p}^{k} \left( 1-p \right) ^{n-k}$, $k=0,\ldots, n$\\
-
+$F(k; n, p) = P(X \leq k) = \sum_{i=0}^{k} \binom{n}{i} p^{i} (1 - p)^{n - i}$\\
 $\mathbb{E}[X]=np$\\
-
 $Var(X)= np(1-p)$ \\
-
+$\text{Mode} = \lfloor (n+1)p \rfloor,\quad$ \\
+$\text{Median} \approx \lfloor np \rfloor \text{ or } \lceil np \rceil$\\
 Likelihood:\\
-
 $\displaystyle  L_ n(X_1, \ldots , X_ n, \theta ) =\\
 = \left( \prod _{i = 1}^ n \binom {K}{X_ i} \right) \theta ^{\sum _{i = 1}^ n X_ i} (1 - \theta )^{nK - \sum _{i = 1}^ n X_ i }$\\
-
 Loglikelihood:\\
-
 $\ell_n (\theta) = C + \left( \sum _{i = 1}^ n X_ i \right) \log \theta + \left( nK - \sum _{i = 1}^ n X_ i \right) \log (1 - \theta )$\\
-
 MLE:\\
-
-
+Resolviendo para $p$:\\
+$\displaystyle \hat{p}_{MLE} = \dfrac{\sum_{i=1}^n x_i}{nN}$\\
+(o si se trata de una sola muestra con $x$ éxitos en $n$ ensayos:)\\
+$\displaystyle \hat{p}_{MLE} = \dfrac{x}{n}$\\[6pt]
 Fisher Information:\\
-
 $I(p) = \frac{n}{p(1-p)}$\\
-
 Canonical exponential form:\\
-
 $f_ p(y) =\\  
-exp (y \underbrace{(\ln (p)-\ln (1-p))}_{\theta } + \underbrace{n\ln (1-p)}_{-b(\theta )} +\underbrace{\ln(\binom {n}{y})}_{c(y,\phi )} )$
-
-\subsection*{Geometric}
-Number of $T$ trials up to (and including) the first success. 
-
-$p_T(t) = (1-p)^{t-1}, t=1,2,...$\\
-$\mathbb{E}[T]=\frac{1}{p}$\\
-$var(T)=\frac{1-p}{p^2}$
-
-\subsection*{Pascal}
-
-The negative binomial or Pascal distribution is a generalization of the geometric distribution. It relates to the random experiment of repeated independent trials until observing $m$ successes. I.e. the time of the kth arrival.
-
-$Y_k=T_1+...T_k$\\
-
-$T_i \sim iid Geometric(p)$\\
-
-$\mathbb{E}[Y_k]=\frac{k}{p}$\\
-
-$Var(Y_k)= \frac{k(1-p}{p^2}$
-
-$p_{Y_k}(t) ={t-1 \choose k-1}p^k(1-p)^{t-k}$\\
-
-$t=k,k+1,...$
-
-
-\subsection*{Multinomial}
-
-Parameters $n>0$ and $p_1, \ldots, p_r$.
-
-$p_x(x)= \frac{n!}{x_1!,\ldots,x_n!} p_1, \ldots, p_r$\\
-
-
-$\mathbb{E}[X_i]=n*p_i$\\
-
-$Var(X_i)=np_i(1-p_i)$\\
-
-
-Likelihood:\\
-
-$p_x(x)= \prod _{j=1}^{n}{p_{{j}}}^{T_{{j}}}$, where $T^j=\mathbbm{1}( X_i=j)$ is the count how often an outcome is seen in trials. \\
-
-Loglikelihood:\\
-$\ell_n= \sum _{j=2}^{n}T_{{j}}\ln  \left( p_{{j}} \right)$\\
-
+exp [y \underbrace{(\ln (p)-\ln (1-p))}_{\theta } + \underbrace{n\ln (1-p)}_{-b(\theta )} \\
++\underbrace{\ln(\binom {n}{y})}_{c(y,\phi )} ]$
 
 \subsection*{Poisson}
 Parameter $\lambda$. discrete, approximates the binomial PMF when $n$ is large, $p$ is small, and $\lambda = np$.\\
 
 $\mathbf{p_x}(k)=exp(-\lambda)\frac{\lambda^k}{k!}$ for $k=0,1, \ldots,$\\
-
+$F(k; \lambda) = P(X \leq k) = \sum_{i=0}^{k} \frac{e^{-\lambda} \lambda^{i}}{i!}$\\
 $\mathbb{E}[X]=\lambda$\\
-
 $Var(X)=\lambda$\\
+$\text{Mode} = \lfloor \lambda \rfloor,\quad$\\
+$\text{Median} \approx \lfloor \lambda + 1/3 - 0.02/\lambda \rfloor$\\
 
 Likelihood:\\
 $L_ n(x_1, \ldots , x_ n, \lambda) = \prod _{i = 1}^ n \frac{\lambda^{\sum_{i=1}^{n} x_i}}{\prod _{i = 1}^ n x_i!} e^{-n\lambda}$\\
-
 Loglikelihood:\\
-$\ell_n (\lambda)= \\
-= -n\lambda + log(\lambda)(\sum_{i=1}^n x_i)) - log(\prod _{i = 1}^ n x_i!)$\\
-
+$\ell(\lambda) = \ln L(\lambda) 
+= -n\lambda + \left(\sum_{i=1}^{n} x_i\right)\ln(\lambda) - \sum_{i=1}^{n}\ln(x_i!)$\\
 MLE:\\
-
 $\hat{\lambda}_{MLE} = \frac{1}{n} \sum^n_{i=1}(X_i)$\\
-
 Fisher Information:\\
-
 $I(\lambda)= \frac{1}{\lambda}$\\
-
 Canonical exponential form:\\
-
 $ f_{\theta}(y) = \exp\big(y\theta - \underbrace{e^\theta}_{b(\theta)} \underbrace{- \ln y!}_{c(y, \phi)}\big)$\\
 $\theta = \ln \lambda$\\
 $\phi = 1$\\
-
 Poisson process:\\
 k arrivals in t slots
 $\mathbf{p_x}(k,t) = \mathbb{P}(N_t=k)=e^{-\lambda t} \frac{(\lambda t)^k}{k!}$\\
-
 $\mathbb{E}[N_t]=\lambda t$\\
-
 $Var(N_t)=\lambda t$
+
+\subsection*{Geometric}
+Number of $T$ trials up to (and including) the first success. 
+
+$p_T(t) = (1-p)^{t-1}p, t=1,2,...$\\
+$F(k; p) = P(X \leq k) = 1 - (1 - p)^k$\\
+$\mathbb{E}[T]=\frac{1}{p}$\\
+$var(T)=\frac{1-p}{p^2}$\\
+$\text{Mode} = 1,\quad$ \\
+$\text{Median} = \left\lceil \frac{-1}{\ln(1-p)} \right\rceil$\\
 
 \subsection*{Exponential}
 Parameter $\lambda$, continuous\\
@@ -174,6 +127,8 @@ $\mathbb{E}[X]=\frac{1}{\lambda}$\\
 $\mathbb{E}[X^2]=\frac{2}{\lambda^2}$
 
 $Var(X)=\frac{1}{\lambda^2}$\\
+$\text{Mode} = 0,\quad \text{Median} = \frac{\ln(2)}{\lambda}$
+
 
 Likelihood:\\
 $L(X_1\dots X_n;\lambda)=\lambda^n\exp\left(-\lambda\sum_{i=1}^n X_i\right)$\\
@@ -193,10 +148,93 @@ $I(\lambda)= \frac{1}{\lambda^2}$\\
 Canonical exponential form:\\
 
 $f_{\theta}(y) = \exp\big(y\theta - \underbrace{(-\ln(-\theta))}_{b(\theta)} + \underbrace{0}_{c(y, \phi)}\big)$\\
-
 $\theta = -\lambda = -\frac1{\mu}$\\
-
 $\phi = 1$
+
+\subsection*{Pascal}
+
+The negative binomial or Pascal distribution is a generalization of the geometric distribution. It relates to the random experiment of repeated independent trials until observing $m$ successes. I.e. the time of the kth arrival.
+
+$Y_k=T_1+...T_k$\\
+
+$T_i \sim iid \sim Geometric(p)$\\
+
+$\mathbb{E}[Y_k]=\frac{k}{p}$\\
+
+$Var(Y_k)= \frac{k(1-p)}{p}$\\
+$\text{Mode} = \left\lfloor \frac{(r-1)(1-p)}{p} \right\rfloor,\quad$\\
+$\text{Median} \approx \frac{r(1-p)}{p}$\\
+
+
+$p_{Y_k}(t) ={t-1 \choose k-1}p^k(1-p)^{t-k}$\\
+$F(k; r, p) = P(X \leq k) = \sum_{i=r}^{k} \binom{i-1}{r-1} p^{r} (1 - p)^{i - r}$\\
+
+
+$t=k,k+1,...$
+
+\subsection*{Erlang}
+
+Parameters: shape $k \in \mathbb{N}$, rate $\lambda > 0$, continuous\\
+$ 
+f_x(x)=
+	\begin{cases}
+		 \dfrac{\lambda^k x^{k-1} e^{-\lambda x}}{(k-1)!}, & \text{if } x \ge 0\\
+		0, & \text{o.w.}
+	\end{cases}
+$\\
+
+$ 
+F_x(x)=
+	\begin{cases}
+		 1 - e^{-\lambda x}\sum_{i=0}^{k-1}\dfrac{(\lambda x)^i}{i!}, & \text{if } x \ge 0\\
+		0, & \text{o.w.}
+	\end{cases}
+$\\
+
+$\mathbb{E}[X]=\dfrac{k}{\lambda}$\\
+$Var(X)=\dfrac{k}{\lambda^2}$\\
+$\text{Mode} = \frac{(\alpha-1)}{\lambda},\quad \text{Median} \approx \frac{\alpha - 1/3}{\lambda}$
+
+Likelihood:\\
+$L(X_1\dots X_n;\lambda)=
+\dfrac{\lambda^{nk}e^{-\lambda\sum_{i=1}^n X_i}\prod_{i=1}^n X_i^{k-1}}
+{((k-1)!)^n}$\\
+
+Loglikelihood:\\
+$\ell_n (\lambda)=nk\ln(\lambda)-\lambda\sum_{i=1}^n X_i\\
++(k-1)\sum_{i=1}^n\ln(X_i)-n\ln((k-1)!)$\\
+
+MLE:\\
+$\hat{\lambda}_{MLE}= \dfrac{nk}{\sum^{n}_{i=1}X_i}$\\
+
+Fisher Information:\\
+$I(\lambda)= \dfrac{k}{\lambda^2}$\\
+
+Canonical exponential form:\\
+$f_{\theta}(y) = 
+\exp\Big(k\theta + (k-1)\ln y - e^{\theta}y - \ln((k-1)!)\Big)$\\
+$\theta = \ln(\lambda)$\\
+$\phi = 1$\\
+
+\subsection*{Multinomial}
+
+Parameters $n>0$ and $p_1, \ldots, p_r$.
+
+$p_x(x)= \frac{n!}{x_1!,\ldots,x_n!} p_1, \ldots, p_r$\\
+
+
+$\mathbb{E}[X_i]=n*p_i$\\
+
+$Var(X_i)=np_i(1-p_i)$\\
+
+
+Likelihood:\\
+
+$p_x(x)= \prod _{j=1}^{n}{p_{{j}}}^{T_{{j}}}$, where $T^j=\mathbbm{1}( X_i=j)$ is the count how often an outcome is seen in trials. \\
+
+Loglikelihood:\\
+$\ell_n= \sum _{j=2}^{n}T_{{j}}\ln  \left( p_{{j}} \right)$\\
+
 
 \subsection*{Shifted Exponential}
 
@@ -208,7 +246,7 @@ $ f_x(x)=
 	\end{cases}
 $\\
 
-$ F_x(x)=
+$ F_x(x)=\\
 	\begin{cases}
 		 1-exp(-\lambda(x-a)),&{if x >= a}\\
 		0,&{x <= a}\\
@@ -306,7 +344,8 @@ $ \mathbf{f_x}(x)=
 		0,&\text{o.w.}\\
 	\end{cases}
 $\\
-
+$ \mathbf{F_x}(x)=\mathbb{P}(X<=x)
+$\\
 $ \mathbf{F_x}(x)=
 	\begin{cases}
 		 0,&for x \leq a\\
@@ -318,11 +357,98 @@ $\\
 
 $\mathbb{E}[X]=\frac{a+b}{2}$\\
 $Var(X)=\frac{(b-a)^2}{12}$\\
+$\text{Mode} = \text{any value in } [a,b],\quad$ 
+$\text{Median} = \frac{a+b}{2}$
+
 
 Likelihood:\\
 $L(x_1\dots x_n;b)=\frac{1(\max_i (x_i \leq b))} {b^n}$\\
 
 Loglikelihood:\\
+$\ell(a,b)=
+	\begin{cases}
+		-n \ln(b - a), & a \le \min(X_i), \; b \ge \max(X_i)\\
+		-\infty, & \text{o.w.}
+	\end{cases}
+$\\[6pt]
+
+MLE:\\
+$\hat{a}_{MLE} = \min(X_i)$,\quad
+$\hat{b}_{MLE} = \max(X_i)$\\[6pt]
+
+Fisher Information:\\
+\text{undefined (depends on support limits)}\\
+
+\subsection*{Gamma}
+Parameters $\alpha, \lambda$, continuous\\
+$ f_X(x)=
+	\begin{cases}
+		\dfrac{\lambda^{\alpha} x^{\alpha-1} e^{-\lambda x}}{\Gamma(\alpha)}, & \text{if } x \ge 0 \\
+		0, & \text{o.w.}
+	\end{cases}
+$\\[6pt]
+$F_X(x)= P(X \le x)= \dfrac{1}{\Gamma(\alpha)} \gamma(\alpha, \lambda x)$\\
+(where $\gamma(\alpha, \lambda x)$ is the lower incomplete Gamma function)\\[6pt]
+$\mathbb{E}[X]=\dfrac{\alpha}{\lambda}$\\
+$\mathbb{E}[X^2]=\dfrac{\alpha(\alpha+1)}{\lambda^2}$\\
+$Var(X)=\dfrac{\alpha}{\lambda^2}$\\
+$\text{Mode} = \frac{(\alpha - 1)}{\lambda} \text{ for } \alpha > 1,\quad$\\
+$\text{Median} \approx \frac{\alpha - 1/3}{\lambda}$\\
+
+Likelihood:\\
+$L(X_1,\dots,X_n;\alpha,\lambda)=
+	\dfrac{\lambda^{n\alpha}}{\Gamma(\alpha)^n}
+	\prod_{i=1}^n x_i^{\alpha-1} e^{-\lambda x_i}$\\[6pt]
+Loglikelihood:\\
+$\ell_n(\alpha,\lambda)= n\alpha \ln(\lambda) - n \ln(\Gamma(\alpha))
++ (\alpha-1)\sum_{i=1}^n \ln(x_i) - \lambda \sum_{i=1}^n x_i$\\[6pt]
+MLE for $\lambda$ (given $\alpha$):\\
+$\hat{\lambda}_{MLE} = \dfrac{n\alpha}{\sum_{i=1}^n x_i}$\\[6pt]
+Fisher Information (for $\lambda$):\\
+$I(\lambda)=\dfrac{\alpha}{\lambda^2}$\\[6pt]
+Canonical exponential form:\\
+$f_{\theta}(y)=\exp\big(\underbrace{y\theta}_{\text{sufficient stat.}} - 
+\underbrace{(-\alpha\ln(-\theta))}_{b(\theta)} + 
+(\alpha-1)\ln(y) - \ln\Gamma(\alpha)\big)$\\
+$\theta = -\lambda,\quad \phi=1$\\
+
+\subsection*{Beta}
+Parameters $\alpha, \beta$, continuous\\
+$ f_X(x)=
+	\begin{cases}
+		\dfrac{x^{\alpha-1}(1-x)^{\beta-1}}{B(\alpha,\beta)}, & \text{if } 0 < x < 1 \\
+		0, & \text{o.w.}
+	\end{cases}
+$\\[6pt]
+$F_X(x)= P(X \le x)= I_x(\alpha,\beta)$\\
+(where $I_x(\alpha,\beta)$ is the regularized incomplete Beta function)\\[6pt]
+$\mathbb{E}[X]=\dfrac{\alpha}{\alpha+\beta}$\\
+$\mathbb{E}[X^2]=\dfrac{\alpha(\alpha+1)}{(\alpha+\beta)(\alpha+\beta+1)}$\\
+$Var(X)=\dfrac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$\\
+$\text{Mode} = \frac{\alpha - 1}{\alpha + \beta - 2} \text{ for } \alpha,\beta > 1,\quad$ 
+$\text{Median} \approx \frac{\alpha - 1/3}{\alpha + \beta - 2/3}$\\
+Likelihood:\\
+$L(X_1,\dots,X_n;\alpha,\beta)=
+	\dfrac{1}{B(\alpha,\beta)^n}
+	\prod_{i=1}^n x_i^{\alpha-1}(1-x_i)^{\beta-1}$\\[6pt]
+Loglikelihood:\\
+$\ell_n(\alpha,\beta)=
+	-n\ln(B(\alpha,\beta))
+	+ (\alpha-1)\sum_{i=1}^n \ln(x_i)
+	+ (\beta-1)\sum_{i=1}^n \ln(1-x_i)$\\[6pt]
+Fisher Information Matrix entries (for large $n$):\\
+$I_{\alpha\alpha} = n[\psi'(\alpha) - \psi'(\alpha+\beta)]$,\\
+$I_{\beta\beta} = n[\psi'(\beta) - \psi'(\alpha+\beta)]$,\\
+$I_{\alpha\beta} = -n\psi'(\alpha+\beta)$\\
+(where $\psi'$ is the trigamma function)\\[6pt]
+Canonical exponential form:\\
+$f_{\theta}(y) =
+\exp\big(
+	y_1\theta_1 + y_2\theta_2 - b(\theta)
+\big)$\\
+with $\theta_1=\alpha-1$, $\theta_2=\beta-1$, and
+$b(\theta)=\ln B(\alpha,\beta)$\\
+
 
 \subsection*{Cauchy}
 continuous, parameter $m$,
